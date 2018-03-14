@@ -1,0 +1,6 @@
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\bin\Debug\AlalaDocuments.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\bin\Debug\AlalaDocuments.pdb
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\bin\Debug\SAPBusinessOneSDK.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\obj\Debug\AlalaDocuments.csprojResolveAssemblyReference.cache
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\obj\Debug\AlalaDocuments.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\obj\Debug\AlalaDocuments.pdb

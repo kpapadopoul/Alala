@@ -1,0 +1,6 @@
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\bin\Debug\AlalaDiConnector.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\bin\Debug\AlalaDiConnector.pdb
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\bin\Debug\SAPBusinessOneSDK.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\obj\Debug\AlalaDiConnector.csprojResolveAssemblyReference.cache
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\obj\Debug\AlalaDiConnector.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\obj\Debug\AlalaDiConnector.pdb

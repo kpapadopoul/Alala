@@ -1,0 +1,5 @@
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\bin\Release\AlalaDiConnector.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\bin\Release\AlalaDiConnector.pdb
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\bin\Release\SAPBusinessOneSDK.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\obj\Release\AlalaDiConnector.dll
+C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDiConnector\AlalaDiConnector\obj\Release\AlalaDiConnector.pdb
