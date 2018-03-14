@@ -1,5 +1,7 @@
+/AlalaBusinessPartners/AlalaBusinessPartners/bin/*
+/AlalaBusinessPartners/AlalaBusinessPartners/obj/*
 /AlalaDiConnector/AlalaDiConnector/bin/*
-/AlalaDiConnector//AlalaDiConnectorobj/*
+/AlalaDiConnector/AlalaDiConnector/obj/*
 /AlalaDocuments/AlalaDocuments/bin/*
 /AlalaDocuments/AlalaDocuments/obj/*
 /AlalaWebAPI/AlalaWebAPI/bin/*
