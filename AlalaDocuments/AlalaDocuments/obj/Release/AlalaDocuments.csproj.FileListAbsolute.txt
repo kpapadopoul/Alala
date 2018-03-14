@@ -1,5 +1,0 @@
-C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\bin\Release\AlalaDocuments.dll
-C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\bin\Release\AlalaDocuments.pdb
-C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\bin\Release\SAPBusinessOneSDK.dll
-C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\obj\Release\AlalaDocuments.dll
-C:\Users\Konstantinos\Documents\Visual Studio 2015\Projects\sap\Alala\AlalaDocuments\AlalaDocuments\obj\Release\AlalaDocuments.pdb

@@ -1,0 +1,9 @@
+/AlalaDiConnector/AlalaDiConnector/bin/*
+/AlalaDiConnector//AlalaDiConnectorobj/*
+/AlalaDocuments/AlalaDocuments/bin/*
+/AlalaDocuments/AlalaDocuments/obj/*
+/AlalaWebAPI/AlalaWebAPI/bin/*
+/AlalaWebAPI/AlalaWebAPI/obj/*
+/AlalaWebAPI.NoMVC/AlalaWebAPI/bin/*
+/AlalaWebAPI.NoMVC/AlalaWebAPI/obj/*
+/.vs/*
