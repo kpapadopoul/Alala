@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 using SAPbobsCOM;
 
@@ -53,6 +54,8 @@ namespace AlalaDocuments.Controllers
                 _company.GetLastError(out code, out msg);
                 throw new Exception($"Something went wrong\n{code} {msg}");
             }
+
+            Marshal.ReleaseComObject(invoiceObj);
         }
     }
 }

@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Controllers\BusinessPartnerController.cs" />
     <Compile Include="Models\BusinessPartnerModel.cs" />
+    <Compile Include="Models\ContactEmployeeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\BusinessPartnerUtility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,9 +1,12 @@
 /AlalaBusinessPartners/AlalaBusinessPartners/bin/*
 /AlalaBusinessPartners/AlalaBusinessPartners/obj/*
+/AlalaBusinessPartners/.vs/*
 /AlalaDiConnector/AlalaDiConnector/bin/*
 /AlalaDiConnector/AlalaDiConnector/obj/*
+/AlalaDiConnector/.vs/*
 /AlalaDocuments/AlalaDocuments/bin/*
 /AlalaDocuments/AlalaDocuments/obj/*
+/AlalaDocuments/.vs/*
 /AlalaWebAPI/AlalaWebAPI/bin/*
 /AlalaWebAPI/AlalaWebAPI/obj/*
 /AlalaWebAPI.NoMVC/AlalaWebAPI/bin/*

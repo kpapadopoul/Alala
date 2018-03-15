@@ -3,16 +3,21 @@
 using SAPbobsCOM;
 
 using AlalaBusinessPartners.Models;
+using AlalaBusinessPartners.Utilities;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace AlalaBusinessPartners.Controllers
 {
     class BusinessPartnerController
     {
         private readonly Company _company;
+        private readonly BusinessPartnerUtility _utility;
 
         public BusinessPartnerController(Company company)
         {
             _company = company;
+            _utility = new BusinessPartnerUtility();
         }
 
         public void Create(BusinessPartnerModel businessPartner)
@@ -24,7 +29,7 @@ namespace AlalaBusinessPartners.Controllers
             // The built-in auto-complete procedure completes the default values of the other properties.
             bp.CardCode = businessPartner.Code; //Mandatory
             bp.CardName = businessPartner.Name;
-            bp.CardType = BoCardTypes.cCustomer; //Mandatory
+            bp.CardType = _utility.ConvertBusinessPartnerType(businessPartner.Type); //Mandatory
 
             // Add it to the database
             var success = bp.Add().Equals(0);
@@ -35,6 +40,82 @@ namespace AlalaBusinessPartners.Controllers
                 string msg;
                 _company.GetLastError(out code, out msg);
                 throw new Exception($"Something went wrong\n{code} {msg}");
+            }
+
+            Marshal.ReleaseComObject(bp);
+        }
+
+        public void UpdateContactEmployees(BusinessPartnerModel businessPartner)
+        {
+            // Prepare the object
+            var bp = (BusinessPartners)_company.GetBusinessObject(BoObjectTypes.oBusinessPartners);
+
+            // Find the record to update if exists
+            if (bp.GetByKey(businessPartner.Code))
+            {
+                foreach (var contact in businessPartner.ContactEmployees)
+                {
+                    if (contact != businessPartner.ContactEmployees.First())
+                    {
+                        bp.ContactEmployees.Add();
+                    }
+
+                    bp.ContactEmployees.Name = contact.Name;
+                    bp.ContactEmployees.E_Mail = contact.Email;
+
+                    var success = bp.Update().Equals(0);
+                    if (!success)
+                    {
+                        // Error handling
+                        int code;
+                        string msg;
+                        _company.GetLastError(out code, out msg);
+                        throw new Exception($"Something went wrong\n{code} {msg}");
+                    }
+                }                
+            }
+
+            Marshal.ReleaseComObject(bp);
+        }
+
+        public void ExportAsXml(string businessPartnerCode, string path)
+        {
+            // Prepare the object
+            var bp = (BusinessPartners)_company.GetBusinessObject(BoObjectTypes.oBusinessPartners);
+
+            // Find the record to update if exists
+            if (bp.GetByKey(businessPartnerCode))
+            {
+                _company.XmlExportType = BoXmlExportTypes.xet_ExportImportMode;
+                bp.SaveXML(path);
+            }
+
+            Marshal.ReleaseComObject(bp);
+        }
+
+        public void ImportFromXml(string path)
+        {
+            // Get number of business objects in file
+            var elementCount = _company.GetXMLelementCount(path);
+
+            // Loop through objects - find BP and add it to database
+            for (var i = 0; i < elementCount; i++)
+            {
+                if (_company.GetXMLobjectType(path, i) != BoObjectTypes.oBusinessPartners) continue;
+
+                var bp = (BusinessPartners)_company.GetBusinessObjectFromXML(path, i);
+
+                var success = bp.Add().Equals(0);
+                if (!success)
+                {
+                    // Error handling
+                    int code;
+                    string msg;
+                    _company.GetLastError(out code, out msg);
+                    throw new Exception($"Something went wrong\n{code} {msg}");
+                }
+
+                Marshal.ReleaseComObject(bp);
             }
         }
     }
