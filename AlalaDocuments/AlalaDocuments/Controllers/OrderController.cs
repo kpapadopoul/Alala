@@ -8,7 +8,7 @@ using AlalaDocuments.Models;
 
 namespace AlalaDocuments.Controllers
 {
-    class OrderController
+    public class OrderController
     {
         private readonly Company _company;
 

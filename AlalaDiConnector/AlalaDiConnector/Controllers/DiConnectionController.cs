@@ -7,10 +7,18 @@ using AlalaDiConnector.Models;
 
 namespace AlalaDiConnector.Controllers
 {
-    class DiConnectionController
+    public class DiConnectionController
     {
-        public Company Company { get; }
+        public Company Company { get; set; } // Property respesents the SAP DI company object
 
+        public DiConnectionController() { }
+
+        /// <summary>
+        /// Default constructor of the DI connection controller;
+        /// initializes the company object based on a given
+        /// DI connection model.
+        /// </summary>
+        /// <param name="connection">The given model represents the DI connection details.</param>
         public DiConnectionController(DiConnectionModel connection)
         {
             Company = new Company
@@ -24,6 +32,9 @@ namespace AlalaDiConnector.Controllers
             };
         }
 
+        /// <summary>
+        /// Connect to SAP DI.
+        /// </summary>
         public void Connect()
         {
             var success = Company.Connect().Equals(0);
@@ -36,6 +47,9 @@ namespace AlalaDiConnector.Controllers
             }
         }
 
+        /// <summary>
+        /// Disconnect from SAP DI.
+        /// </summary>
         public void Disconnect()
         {
             Company.Disconnect();
