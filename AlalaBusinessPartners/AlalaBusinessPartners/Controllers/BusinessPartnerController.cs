@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 using SAPbobsCOM;
 
 using AlalaBusinessPartners.Models;
 using AlalaBusinessPartners.Utilities;
-using System.Linq;
-using System.Runtime.InteropServices;
+
 
 namespace AlalaBusinessPartners.Controllers
 {
-    class BusinessPartnerController
+    public class BusinessPartnerController
     {
         private readonly Company _company;
         private readonly BusinessPartnerUtility _utility;
@@ -18,6 +19,25 @@ namespace AlalaBusinessPartners.Controllers
         {
             _company = company;
             _utility = new BusinessPartnerUtility();
+        }
+
+        public BusinessPartnerModel Get(string businessPartnerCode)
+        {            
+            // Prepare the object
+            var bp = (BusinessPartners)_company.GetBusinessObject(BoObjectTypes.oBusinessPartners);
+
+            var bpModel = new BusinessPartnerModel();
+
+            // Find the record to update if exists
+            if (bp.GetByKey(businessPartnerCode))
+            {
+                bpModel.Code = bp.CardCode;
+                bpModel.Name = bp.CardName;
+                bpModel.Type = _utility.ConvertBusinessPartnerType(bp.CardType);                
+            }
+
+            Marshal.ReleaseComObject(bp);
+            return bpModel;
         }
 
         public void Create(BusinessPartnerModel businessPartner)
@@ -72,7 +92,32 @@ namespace AlalaBusinessPartners.Controllers
                         _company.GetLastError(out code, out msg);
                         throw new Exception($"Something went wrong\n{code} {msg}");
                     }
-                }                
+                }
+            }
+
+            Marshal.ReleaseComObject(bp);
+        }
+
+        public void Delete(string businessPartnerCode)
+        {
+            // Prepare the object
+            var bp = (BusinessPartners)_company.GetBusinessObject(BoObjectTypes.oBusinessPartners);
+
+            var bpModel = new BusinessPartnerModel();
+
+            // Find the record to update if exists
+            if (bp.GetByKey(businessPartnerCode))
+            {
+                // Add it to the database
+                var success = bp.Remove().Equals(0);
+                if (!success)
+                {
+                    // Error handling
+                    int code;
+                    string msg;
+                    _company.GetLastError(out code, out msg);
+                    throw new Exception($"Something went wrong\n{code} {msg}");
+                }
             }
 
             Marshal.ReleaseComObject(bp);
