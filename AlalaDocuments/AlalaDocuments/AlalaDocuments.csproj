@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AlalaDiConnector">
+      <HintPath>..\..\AlalaDiConnector\AlalaDiConnector\bin\Release\AlalaDiConnector.dll</HintPath>
+    </Reference>
     <Reference Include="SAPBusinessOneSDK">
       <HintPath>..\..\Dependencies\SAPBusinessOneSDK.dll</HintPath>
     </Reference>
@@ -43,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\InvoiceController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\Invoices.cs" />
+    <Compile Include="Controllers\Orders.cs" />
+    <Compile Include="Interfaces\IInvoices.cs" />
+    <Compile Include="Interfaces\IOrders.cs" />
     <Compile Include="Models\InvoiceModel.cs" />
     <Compile Include="Models\ItemModel.cs" />
     <Compile Include="Models\OrderModel.cs" />

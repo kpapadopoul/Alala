@@ -12,6 +12,11 @@
 /AlalaDocuments/AlalaDocuments/bin/*
 /AlalaDocuments/AlalaDocuments/obj/*
 /AlalaDocuments/.vs/*
+/AlalaDocuments/AlalaDocuments.Test/bin/*
+/AlalaDocuments/AlalaDocuments.Test/obj/*
+/AlalaJournalEntries/AlalaJournalEntries/bin/*
+/AlalaJournalEntries/AlalaJournalEntries/obj/*
+/AlalaJournalEntries/.vs/*
 /AlalaWebAPI/AlalaWebAPI/bin/*
 /AlalaWebAPI/AlalaWebAPI/obj/*
 /AlalaWebAPI/.vs/*

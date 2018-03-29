@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using NUnit.Framework;
 using Rhino.Mocks;
 
-using SAPbobsCOM;
+using AlalaDiConnector.Controllers;
 
 using AlalaDocuments.Controllers;
 using AlalaDocuments.Models;
@@ -17,13 +13,13 @@ namespace AlalaDocuments.Test.Controllers
     [TestFixture]
     public class InvoiceControllerTest
     {
-        InvoiceController _invoiceController;
+        Invoices _invoiceController;
 
         [SetUp]
         public void Init()
         {
-            var company = MockRepository.GenerateMock<Company>();
-            _invoiceController = new InvoiceController(company);
+            var connection = MockRepository.GenerateMock<DiConnectionController>();
+            _invoiceController = new Invoices(connection);
         }
 
         [Test]
