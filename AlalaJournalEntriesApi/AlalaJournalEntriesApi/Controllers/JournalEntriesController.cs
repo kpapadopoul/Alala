@@ -4,9 +4,9 @@ using AlalaDiConnector.Controllers;
 using AlalaDiConnector.Models;
 using AlalaJournalEntries.Controllers;
 using AlalaJournalEntries.Interfaces;
+using AlalaJournalEntries.Models;
 
 using AlalaJournalEntriesApi.Resources;
-using AlalaJournalEntries.Models;
 
 namespace AlalaJournalEntriesApi.Controllers
 {

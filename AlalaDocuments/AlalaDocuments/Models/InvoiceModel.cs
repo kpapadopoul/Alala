@@ -4,6 +4,7 @@ namespace AlalaDocuments.Models
 {
     public class InvoiceModel
     {
+        public int DocEntry { get; set; }
         public string BusinessPartner { get; set; }
         public List<ItemModel> ItemList { get; set; }
     }

@@ -27,6 +27,7 @@ namespace AlalaDocuments.Controllers
             if (invoiceObj.GetByKey(docEntry))
             {
                 invoice = new InvoiceModel();
+                invoice.DocEntry = invoiceObj.DocEntry;
                 invoice.BusinessPartner = invoiceObj.CardCode;
 
                 // TODO: Add code to retrieve line data of the invoice.
@@ -41,7 +42,7 @@ namespace AlalaDocuments.Controllers
             // Prepare the object
             var invoiceObj = (Documents)_company.GetBusinessObject(BoObjectTypes.oInvoices);
 
-            // Set header values
+            // Set header values            
             invoiceObj.CardCode = invoice.BusinessPartner;
             invoiceObj.DocDueDate = DateTime.Now;
 
@@ -73,7 +74,7 @@ namespace AlalaDocuments.Controllers
             Marshal.ReleaseComObject(invoiceObj);
         }
 
-        public void CreateBasedOnOrder(InvoiceModel invoice, int orderId)
+        public void CreateBasedOnOrder(int orderId, InvoiceModel invoice)
         {
             // Prepare the object
             var invoiceObj = (Documents)_company.GetBusinessObject(BoObjectTypes.oInvoices);
