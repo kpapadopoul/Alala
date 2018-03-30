@@ -17,6 +17,9 @@
 /AlalaJournalEntries/AlalaJournalEntries/bin/*
 /AlalaJournalEntries/AlalaJournalEntries/obj/*
 /AlalaJournalEntries/.vs/*
+/AlalaJournalEntriesApi/AlalaJournalEntriesApi/bin/*
+/AlalaJournalEntriesApi/AlalaJournalEntriesApi/obj/*
+/AlalaJournalEntriesApi/.vs/*
 /AlalaWebAPI/AlalaWebAPI/bin/*
 /AlalaWebAPI/AlalaWebAPI/obj/*
 /AlalaWebAPI/.vs/*
