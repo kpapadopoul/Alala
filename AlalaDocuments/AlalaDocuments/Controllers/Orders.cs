@@ -27,6 +27,7 @@ namespace AlalaDocuments.Controllers
             if (orderObj.GetByKey(docEntry))
             {
                 order = new OrderModel();
+                order.DocEntry = orderObj.DocEntry;
                 order.BusinessPartner = orderObj.CardCode;
 
                 // TODO: Add code to retrieve line data of the order.
@@ -72,13 +73,16 @@ namespace AlalaDocuments.Controllers
             Marshal.ReleaseComObject(orderObj);
         }
 
-        public void UpdateItems(int docEntry, OrderModel order)
+        public bool UpdateItems(int docEntry, OrderModel order)
         {
             // Prepare the object
             var orderObj = (Documents)_company.GetBusinessObject(BoObjectTypes.oOrders);
 
+            var orderFound = false;
             if (orderObj.GetByKey(docEntry))
             {
+                orderFound = true;
+
                 foreach (var item in order.ItemList)
                 {
                     if (orderObj.Lines.Count > 0)
@@ -104,6 +108,7 @@ namespace AlalaDocuments.Controllers
             }
 
             Marshal.ReleaseComObject(orderObj);
+            return orderFound;
         }
 
         public bool Delete(int docEntry)

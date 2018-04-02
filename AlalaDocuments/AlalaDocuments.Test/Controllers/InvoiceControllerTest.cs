@@ -33,7 +33,7 @@ namespace AlalaDocuments.Test.Controllers
             };
 
             // Act
-            _invoiceController.CreateBasedOnOrder(invoiceModel, orderId);
+            _invoiceController.CreateBasedOnOrder(orderId, invoiceModel);
 
             // Assert
         }

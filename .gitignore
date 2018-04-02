@@ -12,6 +12,9 @@
 /AlalaDocuments/AlalaDocuments/bin/*
 /AlalaDocuments/AlalaDocuments/obj/*
 /AlalaDocuments/.vs/*
+/AlalaDocumentsApi/AlalaDocumentsApi/bin/*
+/AlalaDocumentsApi/AlalaDocumentsApi/obj/*
+/AlalaDocumentsApi/.vs/*
 /AlalaDocuments/AlalaDocuments.Test/bin/*
 /AlalaDocuments/AlalaDocuments.Test/obj/*
 /AlalaJournalEntries/AlalaJournalEntries/bin/*
