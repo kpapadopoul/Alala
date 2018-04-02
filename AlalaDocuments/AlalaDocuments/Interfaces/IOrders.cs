@@ -6,7 +6,7 @@ namespace AlalaDocuments.Interfaces
     {
         OrderModel GetById(int docEntry);
         void Create(OrderModel order);
-        void UpdateItems(int docEntry, OrderModel order);
+        bool UpdateItems(int docEntry, OrderModel order);
         bool Delete(int docEntry);
     }
 }

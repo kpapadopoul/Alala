@@ -10,6 +10,7 @@ using AlalaJournalEntriesApi.Resources;
 
 namespace AlalaJournalEntriesApi.Controllers
 {
+    [Route("api/JournalEntries")]
     public class JournalEntriesController : ApiController
     {
         private DiConnectionController _connector;

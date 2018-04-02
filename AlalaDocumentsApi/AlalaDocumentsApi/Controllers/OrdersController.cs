@@ -10,13 +10,13 @@ using AlalaDocumentsApi.Resources;
 
 namespace AlalaDocumentsApi.Controllers
 {
-    [Route("api/Invoices")]
-    public class InvoicesController : ApiController
+    [Route("api/Orders")]
+    public class OrdersController : ApiController
     {
         private DiConnectionController _connector;
-        private IInvoices _invoices;
+        private IOrders _orders;
 
-        public InvoicesController()
+        public OrdersController()
         {
             // TODO: Update controller to get connection details
             // from XML file.
@@ -33,66 +33,53 @@ namespace AlalaDocumentsApi.Controllers
             // SAP testbed is ready to test
             //_connector.Connect();
 
-            _invoices = new Invoices(_connector);
+            _orders = new Orders(_connector);
         }
 
-        ~InvoicesController()
+        ~OrdersController()
         {
             // TODO: Uncomment the following line when
             // SAP testbed is ready to test
             //_connector.Disconnect();
         }
 
-        [HttpGet, Route("GetInvoiceById", Name = "GetInvoiceById")]
+        [HttpGet, Route("GetOrderById", Name = "GetOrderById")]
         public IHttpActionResult GetById(int docEntry)
         {
-            var invoice = _invoices.GetById(docEntry);
+            var order = _orders.GetById(docEntry);
 
-            if (invoice == null)
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return Ok(invoice);
+            return Ok(order);
         }
 
-        [HttpPost, Route("CreateInvoice")]
-        public IHttpActionResult Create([FromBody]InvoiceModel invoice)
+        [HttpPost, Route("CreateOrder")]
+        public IHttpActionResult Create([FromBody]OrderModel order)
         {
-            if (invoice == null)
+            if (order == null)
             {
                 return BadRequest();
             }
 
-            _invoices.Create(invoice);
+            _orders.Create(order);
 
             return Ok();
         }
 
-        [HttpPost, Route("CreateInvoiceBasedOnOrder")]
-        public IHttpActionResult CreateBasedOnOrder(int orderId, [FromBody]InvoiceModel invoice)
+        [HttpPut, Route("UpdateOrderItems")]
+        public IHttpActionResult UpdateItems(int docEntry, [FromBody]OrderModel order)
         {
-            if (invoice == null)
+            if (order == null ||
+                order.DocEntry != docEntry)
             {
                 return BadRequest();
             }
 
-            _invoices.CreateBasedOnOrder(orderId, invoice);
-
-            return Ok();
-        }
-
-        [HttpPut, Route("UpdateInvoiceItems")]
-        public IHttpActionResult UpdateItems(int docEntry, [FromBody]InvoiceModel invoice)
-        {
-            if (invoice == null ||
-                invoice.DocEntry != docEntry)
-            {
-                return BadRequest();
-            }
-
-            var invFound = _invoices.UpdateItems(docEntry, invoice);
-            if (!invFound)
+            var orderFound = _orders.UpdateItems(docEntry, order);
+            if (!orderFound)
             {
                 return NotFound();
             }
@@ -100,11 +87,11 @@ namespace AlalaDocumentsApi.Controllers
             return Ok();
         }
 
-        [HttpDelete, Route("DeleteInvoice")]
+        [HttpDelete, Route("DeleteOrder")]
         public IHttpActionResult Delete(int docEntry)
         {
-            var invFound = _invoices.Delete(docEntry);
-            if (!invFound)
+            var orderFound = _orders.Delete(docEntry);
+            if (!orderFound)
             {
                 return NotFound();
             }

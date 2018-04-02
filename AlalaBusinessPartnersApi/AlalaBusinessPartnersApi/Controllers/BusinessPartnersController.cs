@@ -9,7 +9,7 @@ using AlalaBusinessPartnersApi.Resources;
 
 namespace AlalaBusinessPartnersApi.Controllers
 {
-    [Route("api/BusinessPartner")]
+    [Route("api/BusinessPartners")]
     public class BusinessPartnersController : ApiController
     {
         private DiConnectionController _connector;
