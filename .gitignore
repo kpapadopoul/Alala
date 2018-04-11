@@ -26,6 +26,9 @@
 /AlalaJournalEntriesApi/AlalaJournalEntriesApi/bin/*
 /AlalaJournalEntriesApi/AlalaJournalEntriesApi/obj/*
 /AlalaJournalEntriesApi/.vs/*
+/AlalaOutgoingPayments/AlalaOutgoingPayments/bin/*
+/AlalaOutgoingPayments/AlalaOutgoingPayments/obj/*
+/AlalaOutgoingPayments/.vs/*
 /AlalaWebAPI/AlalaWebAPI/bin/*
 /AlalaWebAPI/AlalaWebAPI/obj/*
 /AlalaWebAPI/.vs/*

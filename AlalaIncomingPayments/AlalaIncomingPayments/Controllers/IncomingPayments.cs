@@ -61,6 +61,7 @@ namespace AlalaIncomingPayments.Controllers
                 paymentObj.Invoices.DocEntry = invoice.Entry;
                 paymentObj.Invoices.InvoiceType = _utility.ConvertIncomingPaymentInvoiceType(invoice.Type);
                 paymentObj.Invoices.DocLine = incomingPayment.Invoices.IndexOf(invoice);
+                paymentObj.Invoices.Add();
             }
 
             // Add it to database
