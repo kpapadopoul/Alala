@@ -29,7 +29,7 @@ namespace AlalaDocuments.Test.Controllers
             const int orderId = 0;
             var invoiceModel = new InvoiceModel {
                 BusinessPartner = "001",
-                ItemList = new List<ItemModel>()
+                Items = new List<ItemModel>()
             };
 
             // Act

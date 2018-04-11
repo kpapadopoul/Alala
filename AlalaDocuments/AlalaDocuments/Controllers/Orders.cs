@@ -48,9 +48,9 @@ namespace AlalaDocuments.Controllers
             orderObj.BPL_IDAssignedToInvoice = 1;
 
             // Set line values
-            foreach (var item in order.ItemList)
+            foreach (var item in order.Items)
             {
-                if (item != order.ItemList.First())
+                if (item != order.Items.First())
                 {
                     orderObj.Lines.Add();
                 }
@@ -83,7 +83,7 @@ namespace AlalaDocuments.Controllers
             {
                 orderFound = true;
 
-                foreach (var item in order.ItemList)
+                foreach (var item in order.Items)
                 {
                     if (orderObj.Lines.Count > 0)
                     {

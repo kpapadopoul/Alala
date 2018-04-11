@@ -24,12 +24,12 @@ namespace AlalaBusinessPartners.Controllers
         {            
             // Prepare the object
             var bp = (SAPbobsCOM.BusinessPartners)_company.GetBusinessObject(BoObjectTypes.oBusinessPartners);
-
-            var bpModel = new BusinessPartnerModel();
-
-            // Find the record to update if exists
+            
+            // Find the business partner record by its code.
+            BusinessPartnerModel bpModel = null;
             if (bp.GetByKey(businessPartnerCode))
             {
+                bpModel = new BusinessPartnerModel();
                 bpModel.Code = bp.CardCode;
                 bpModel.Name = bp.CardName;
                 bpModel.Type = _utility.ConvertBusinessPartnerType(bp.CardType);                

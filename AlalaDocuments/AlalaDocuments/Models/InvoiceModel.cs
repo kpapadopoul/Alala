@@ -6,6 +6,6 @@ namespace AlalaDocuments.Models
     {
         public int DocEntry { get; set; }
         public string BusinessPartner { get; set; }
-        public List<ItemModel> ItemList { get; set; }
+        public List<ItemModel> Items { get; set; }
     }
 }

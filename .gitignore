@@ -17,6 +17,9 @@
 /AlalaDocumentsApi/.vs/*
 /AlalaDocuments/AlalaDocuments.Test/bin/*
 /AlalaDocuments/AlalaDocuments.Test/obj/*
+/AlalaIncomingPayments/AlalaIncomingPayments/bin/*
+/AlalaIncomingPayments/AlalaIncomingPayments/obj/*
+/AlalaIncomingPayments/.vs/*
 /AlalaJournalEntries/AlalaJournalEntries/bin/*
 /AlalaJournalEntries/AlalaJournalEntries/obj/*
 /AlalaJournalEntries/.vs/*

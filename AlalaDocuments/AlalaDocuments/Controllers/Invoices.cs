@@ -47,9 +47,9 @@ namespace AlalaDocuments.Controllers
             invoiceObj.DocDueDate = DateTime.Now;
 
             // Set line values
-            foreach (var item in invoice.ItemList)
+            foreach (var item in invoice.Items)
             {
-                if (item != invoice.ItemList.First())
+                if (item != invoice.Items.First())
                 {
                     invoiceObj.Lines.Add();
                 }
@@ -87,9 +87,9 @@ namespace AlalaDocuments.Controllers
             int count = 0;
 
             // Set line values
-            foreach (var item in invoice.ItemList)
+            foreach (var item in invoice.Items)
             {
-                if (!(item == invoice.ItemList.First()))
+                if (!(item == invoice.Items.First()))
                 {
                     invoiceObj.Lines.Add();
                 }
@@ -125,7 +125,7 @@ namespace AlalaDocuments.Controllers
             {
                 invoiceFound = true;
 
-                foreach (var item in invoice.ItemList)
+                foreach (var item in invoice.Items)
                 {
                     if (invoiceObj.Lines.Count > 0)
                     {
