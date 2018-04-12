@@ -20,6 +20,9 @@
 /AlalaIncomingPayments/AlalaIncomingPayments/bin/*
 /AlalaIncomingPayments/AlalaIncomingPayments/obj/*
 /AlalaIncomingPayments/.vs/*
+/AlalaIncomingPaymentsApi/AlalaIncomingPaymentsApi/bin/*
+/AlalaIncomingPaymentsApi/AlalaIncomingPaymentsApi/obj/*
+/AlalaIncomingPaymentsApi/.vs/*
 /AlalaJournalEntries/AlalaJournalEntries/bin/*
 /AlalaJournalEntries/AlalaJournalEntries/obj/*
 /AlalaJournalEntries/.vs/*
