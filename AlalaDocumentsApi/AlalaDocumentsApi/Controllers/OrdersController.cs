@@ -1,12 +1,14 @@
-﻿using System.Web.Http;
+﻿using System.IO;
+using System.Web;
+using System.Web.Http;
+
+using Newtonsoft.Json;
 
 using AlalaDiConnector.Controllers;
 using AlalaDiConnector.Models;
 using AlalaDocuments.Controllers;
 using AlalaDocuments.Interfaces;
 using AlalaDocuments.Models;
-
-using AlalaDocumentsApi.Resources;
 
 namespace AlalaDocumentsApi.Controllers
 {
@@ -18,16 +20,18 @@ namespace AlalaDocumentsApi.Controllers
 
         public OrdersController()
         {
-            // TODO: Update controller to get connection details
-            // from XML file.
-            _connector = new DiConnectionController(
-                new DiConnectionModel
-                {
-                    Server = ConnectionDetails.Server,
-                    CompanyDB = ConnectionDetails.CompanyDB,
-                    Username = ConnectionDetails.Username,
-                    Password = ConnectionDetails.Password
-                });
+            // Get connection details from configuration file.
+            var confPath = Path.Combine(
+                    HttpRuntime.AppDomainAppPath,
+                    "Configuration");
+
+            var connectionPath = File.ReadAllText(
+                Path.Combine(
+                    confPath,
+                    "AlalaDocuments.conf"));
+
+            var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);
+            _connector = new DiConnectionController(connection);
 
             // TODO: Uncomment the following line when
             // SAP testbed is ready to test
