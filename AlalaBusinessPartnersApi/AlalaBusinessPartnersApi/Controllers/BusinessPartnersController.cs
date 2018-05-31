@@ -5,6 +5,7 @@ using System.Web.Http;
 using Newtonsoft.Json;
 
 using AlalaBusinessPartners.Controllers;
+using AlalaBusinessPartners.Interfaces;
 using AlalaBusinessPartners.Models;
 using AlalaDiConnector.Controllers;
 using AlalaDiConnector.Models;
@@ -15,7 +16,7 @@ namespace AlalaBusinessPartnersApi.Controllers
     public class BusinessPartnersController : ApiController
     {
         private DiConnectionController _connector;
-        private BusinessPartners _bpController;
+        private IBusinessPartners _bpController;
         
         public BusinessPartnersController()
         {

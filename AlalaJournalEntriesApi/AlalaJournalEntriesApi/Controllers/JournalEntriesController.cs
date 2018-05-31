@@ -1,12 +1,14 @@
-﻿using System.Web.Http;
+﻿using System.IO;
+using System.Web;
+using System.Web.Http;
+
+using Newtonsoft.Json;
 
 using AlalaDiConnector.Controllers;
 using AlalaDiConnector.Models;
 using AlalaJournalEntries.Controllers;
 using AlalaJournalEntries.Interfaces;
 using AlalaJournalEntries.Models;
-
-using AlalaJournalEntriesApi.Resources;
 
 namespace AlalaJournalEntriesApi.Controllers
 {
@@ -18,16 +20,18 @@ namespace AlalaJournalEntriesApi.Controllers
 
         public JournalEntriesController()
         {
-            // TODO: Update controller to get connection details
-            // from XML file.
-            _connector = new DiConnectionController(
-                new DiConnectionModel
-                {
-                    Server = ConnectionDetails.Server,
-                    CompanyDB = ConnectionDetails.CompanyDB,
-                    Username = ConnectionDetails.Username,
-                    Password = ConnectionDetails.Password
-                });
+            // Get connection details from configuration file.
+            var confPath = Path.Combine(
+                    HttpRuntime.AppDomainAppPath,
+                    "Configuration");
+
+            var connectionPath = File.ReadAllText(
+                Path.Combine(
+                    confPath,
+                    "AlalaJournalEntries.conf"));
+
+            var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);
+            _connector = new DiConnectionController(connection);
 
             // TODO: Uncomment the following line when
             // SAP testbed is ready to test
