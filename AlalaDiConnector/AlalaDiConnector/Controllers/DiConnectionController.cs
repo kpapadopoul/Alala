@@ -25,7 +25,7 @@ namespace AlalaDiConnector.Controllers
             {
                 Server = connection.Server,
                 DbServerType = BoDataServerTypes.dst_MSSQL2014,
-                CompanyDB = connection.CompanyDB,
+                CompanyDB = connection.Company,
                 UserName = connection.Username,
                 Password = connection.Password,
                 language = BoSuppLangs.ln_English
