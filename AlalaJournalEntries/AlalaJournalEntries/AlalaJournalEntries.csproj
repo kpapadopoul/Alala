@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controllers\JournalEntries.cs" />
     <Compile Include="Interfaces\IJournalEntries.cs" />
+    <Compile Include="Mockups\JournalEntriesMockup.cs" />
     <Compile Include="Models\JournalEntryLineModel.cs" />
     <Compile Include="Models\JournalEntryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
