@@ -34,8 +34,12 @@ namespace AlalaBusinessPartnersApi.Controllers
                     confPath,
                     "AlalaBusinessPartners.conf"));
 
-            var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);            
-            _connector = new DiConnectionMockup(connection); // TODO: Turn this to actual controller for integration testing.
+            var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);
+            var passwordPath = Path.Combine(
+                    confPath,
+                    "AlalaBusinessPartners.dat");
+
+            _connector = new DiConnectionMockup(connection, passwordPath); // TODO: Turn this to actual controller for integration testing.
 
             _connector.Connect();
 

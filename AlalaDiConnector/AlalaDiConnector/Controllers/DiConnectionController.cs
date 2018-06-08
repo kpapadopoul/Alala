@@ -1,7 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 using SAPbobsCOM;
+
+using AlalaSecurePasswordLib;
 
 using AlalaDiConnector.Interfaces;
 using AlalaDiConnector.Models;
@@ -20,15 +23,23 @@ namespace AlalaDiConnector.Controllers
         /// DI connection model.
         /// </summary>
         /// <param name="connection">The given model represents the DI connection details.</param>
-        public DiConnectionController(DiConnectionModel connection)
+        public DiConnectionController(DiConnectionModel connection, string passwordPath)
         {
+            if (!File.Exists(passwordPath))
+            {
+                throw new ArgumentException("The password file does not exist.");
+            }
+
+            var passProtector = new PasswordProtector();
+            var password = passProtector.Unprotect(passwordPath);
+
             Company = new Company
             {
                 Server = connection.Server,
                 DbServerType = BoDataServerTypes.dst_MSSQL2014,
                 CompanyDB = connection.Company,
                 UserName = connection.Username,
-                Password = connection.Password,
+                Password = password,
                 language = BoSuppLangs.ln_English
             };
         }

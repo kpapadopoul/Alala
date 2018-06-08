@@ -9,7 +9,7 @@ namespace AlalaDiConnector.Mockups
     {
         public Company Company { get; set; }
 
-        public DiConnectionMockup(DiConnectionModel connection) { }
+        public DiConnectionMockup(DiConnectionModel connection, string passwordPath) { }
 
         public void Connect() { }
         public void Disconnect() { }

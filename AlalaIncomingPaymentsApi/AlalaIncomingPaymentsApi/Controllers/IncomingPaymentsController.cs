@@ -35,7 +35,11 @@ namespace AlalaIncomingPaymentsApi.Controllers
                     "AlalaIncomingPayments.conf"));
 
             var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);
-            _connector = new DiConnectionMockup(connection); // TODO: Turn this to the actual controller for integration testing.
+            var passwordPath = Path.Combine(
+                    confPath,
+                    "AlalaIncomingPayments.dat");
+
+            _connector = new DiConnectionMockup(connection, passwordPath); // TODO: Turn this to the actual controller for integration testing.
             
             _connector.Connect();
 

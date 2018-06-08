@@ -35,11 +35,15 @@ namespace AlalaJournalEntriesApi.Controllers
                     "AlalaJournalEntries.conf"));
 
             var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);
-            _connector = new DiConnectionMockup(connection); // TODO: Turn this to the actual controller for integration testing.
+            var passwordPath = Path.Combine(
+                    confPath,
+                    "AlalaJournalEntries.dat");
+
+            _connector = new DiConnectionMockup(connection, passwordPath); // TODO: Turn this to the actual controller for integration testing.
             
             _connector.Connect();
 
-            _journalEntries = new JournalEntriesMockup(_connector);
+            _journalEntries = new JournalEntriesMockup(_connector); // TODO: Turn this to the actual controller for integration testing.
         }
 
         ~JournalEntriesController()

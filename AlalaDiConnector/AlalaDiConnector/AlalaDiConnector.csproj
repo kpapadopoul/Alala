@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AlalaSecurePasswordLib">
+      <HintPath>..\..\AlalaSecurePasswordLib\AlalaSecurePasswordLib\bin\Release\AlalaSecurePasswordLib.dll</HintPath>
+    </Reference>
     <Reference Include="SAPBusinessOneSDK">
       <HintPath>..\..\Dependencies\SAPBusinessOneSDK.dll</HintPath>
     </Reference>
