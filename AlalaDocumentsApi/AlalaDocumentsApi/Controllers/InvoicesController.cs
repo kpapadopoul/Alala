@@ -5,9 +5,13 @@ using System.Web.Http;
 using Newtonsoft.Json;
 
 using AlalaDiConnector.Controllers;
+using AlalaDiConnector.Interfaces;
+using AlalaDiConnector.Mockups;
 using AlalaDiConnector.Models;
+
 using AlalaDocuments.Controllers;
 using AlalaDocuments.Interfaces;
+using AlalaDocuments.Mockups;
 using AlalaDocuments.Models;
 
 namespace AlalaDocumentsApi.Controllers
@@ -15,7 +19,7 @@ namespace AlalaDocumentsApi.Controllers
     [Route("api/Invoices")]
     public class InvoicesController : ApiController
     {
-        private DiConnectionController _connector;
+        private IDiConnection _connector;
         private IInvoices _invoices;
 
         public InvoicesController()
@@ -31,20 +35,16 @@ namespace AlalaDocumentsApi.Controllers
                     "AlalaDocuments.conf"));
 
             var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);
-            _connector = new DiConnectionController(connection);
+            _connector = new DiConnectionMockup(connection); // TODO: Turn this to the actual controller for integration testing.
             
-            // TODO: Uncomment the following line when
-            // SAP testbed is ready to test
-            //_connector.Connect();
+            _connector.Connect();
 
-            _invoices = new Invoices(_connector);
+            _invoices = new InvoicesMockup(_connector);// TODO: Turn this to the actual controller for integration testing.
         }
 
         ~InvoicesController()
         {
-            // TODO: Uncomment the following line when
-            // SAP testbed is ready to test
-            //_connector.Disconnect();
+            _connector.Disconnect();
         }
 
         [HttpGet, Route("GetInvoiceById", Name = "GetInvoiceById")]

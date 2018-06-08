@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using SAPbobsCOM;
 
 using AlalaDiConnector.Controllers;
+using AlalaDiConnector.Interfaces;
+
 using AlalaIncomingPayments.Models;
 using AlalaIncomingPayments.Utilities;
 
@@ -14,7 +16,7 @@ namespace AlalaIncomingPayments.Controllers
         private readonly Company _company;
         private readonly IncomingPaymentUtility _utility;
 
-        public IncomingPayments(DiConnectionController connection)
+        public IncomingPayments(IDiConnection connection)
         {
             _company = connection.Company;
             _utility = new IncomingPaymentUtility();

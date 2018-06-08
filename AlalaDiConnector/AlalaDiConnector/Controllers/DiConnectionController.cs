@@ -3,11 +3,12 @@ using System.Runtime.InteropServices;
 
 using SAPbobsCOM;
 
+using AlalaDiConnector.Interfaces;
 using AlalaDiConnector.Models;
 
 namespace AlalaDiConnector.Controllers
 {
-    public class DiConnectionController
+    public class DiConnectionController : IDiConnection
     {
         public Company Company { get; set; } // Property respesents the SAP DI company object
 

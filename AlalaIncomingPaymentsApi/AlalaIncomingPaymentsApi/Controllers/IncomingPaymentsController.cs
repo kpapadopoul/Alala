@@ -5,9 +5,13 @@ using System.Web.Http;
 using Newtonsoft.Json;
 
 using AlalaDiConnector.Controllers;
+using AlalaDiConnector.Interfaces;
+using AlalaDiConnector.Mockups;
 using AlalaDiConnector.Models;
-using AlalaIncomingPayments.Interfaces;
+
 using AlalaIncomingPayments.Controllers;
+using AlalaIncomingPayments.Interfaces;
+using AlalaIncomingPayments.Mockups;
 using AlalaIncomingPayments.Models;
 
 namespace AlalaIncomingPaymentsApi.Controllers
@@ -15,7 +19,7 @@ namespace AlalaIncomingPaymentsApi.Controllers
     [Route("api/IncomingPayments")]
     public class IncomingPaymentsController : ApiController
     {
-        private DiConnectionController _connector;
+        private IDiConnection _connector;
         private IIncomingPayments _payments;
 
         public IncomingPaymentsController()
@@ -31,20 +35,16 @@ namespace AlalaIncomingPaymentsApi.Controllers
                     "AlalaIncomingPayments.conf"));
 
             var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);
-            _connector = new DiConnectionController(connection);
+            _connector = new DiConnectionMockup(connection); // TODO: Turn this to the actual controller for integration testing.
+            
+            _connector.Connect();
 
-            // TODO: Uncomment the following line when
-            // SAP testbed is ready to test
-            //_connector.Connect();
-
-            _payments = new IncomingPayments(_connector);
+            _payments = new IncomingPaymentsMockup(_connector); // TODO: Turn this to the actual controller for integration testing.
         }
 
         ~IncomingPaymentsController()
         {
-            // TODO: Uncomment the following line when
-            // SAP testbed is ready to test
-            //_connector.Disconnect();
+            _connector.Disconnect();
         }
 
         [HttpGet, Route("GetById", Name = "GetById")]

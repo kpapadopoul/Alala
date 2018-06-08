@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 using SAPbobsCOM;
 
 using AlalaDiConnector.Controllers;
+using AlalaDiConnector.Interfaces;
+
 using AlalaDocuments.Models;
 
 namespace AlalaDocuments.Controllers
@@ -13,7 +15,7 @@ namespace AlalaDocuments.Controllers
     {
         private readonly Company _company;
 
-        public Invoices(DiConnectionController connection)
+        public Invoices(IDiConnection connection)
         {
             _company = connection.Company;
         }

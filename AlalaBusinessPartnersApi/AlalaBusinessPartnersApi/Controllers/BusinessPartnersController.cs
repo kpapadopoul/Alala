@@ -4,18 +4,22 @@ using System.Web.Http;
 
 using Newtonsoft.Json;
 
+using AlalaDiConnector.Controllers;
+using AlalaDiConnector.Interfaces;
+using AlalaDiConnector.Mockups;
+using AlalaDiConnector.Models;
+
 using AlalaBusinessPartners.Controllers;
 using AlalaBusinessPartners.Interfaces;
+using AlalaBusinessPartners.Mockups;
 using AlalaBusinessPartners.Models;
-using AlalaDiConnector.Controllers;
-using AlalaDiConnector.Models;
 
 namespace AlalaBusinessPartnersApi.Controllers
 {
     [Route("api/BusinessPartners")]
     public class BusinessPartnersController : ApiController
     {
-        private DiConnectionController _connector;
+        private IDiConnection _connector;
         private IBusinessPartners _bpController;
         
         public BusinessPartnersController()
@@ -31,20 +35,16 @@ namespace AlalaBusinessPartnersApi.Controllers
                     "AlalaBusinessPartners.conf"));
 
             var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);            
-            _connector = new DiConnectionController(connection);
+            _connector = new DiConnectionMockup(connection); // TODO: Turn this to actual controller for integration testing.
 
-            // TODO: Uncomment the following line when
-            // SAP testbed is ready to test
-            //_connector.Connect();
+            _connector.Connect();
 
-            _bpController = new BusinessPartners(_connector);
+            _bpController = new BusinessPartnersMockup(_connector); // TODO: Turn this to actual controller for integration testing.
         }
 
         ~BusinessPartnersController()
         {
-            // TODO: Uncomment the following line when
-            // SAP testbed is ready to test
-            //_connector.Disconnect();
+            _connector.Disconnect();
         }
 
         [HttpGet, Route("GetById", Name = "GetById")]

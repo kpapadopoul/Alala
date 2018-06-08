@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 using SAPbobsCOM;
 
 using AlalaDiConnector.Controllers;
+using AlalaDiConnector.Interfaces;
+
 using AlalaJournalEntries.Models;
 
 namespace AlalaJournalEntries.Controllers
@@ -13,7 +15,7 @@ namespace AlalaJournalEntries.Controllers
     {
         private readonly Company _company;
 
-        public JournalEntries(DiConnectionController connection)
+        public JournalEntries(IDiConnection connection)
         {
             _company = connection.Company;
         }

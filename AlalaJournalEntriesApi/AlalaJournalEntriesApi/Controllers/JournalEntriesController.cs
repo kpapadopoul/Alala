@@ -5,9 +5,13 @@ using System.Web.Http;
 using Newtonsoft.Json;
 
 using AlalaDiConnector.Controllers;
+using AlalaDiConnector.Interfaces;
+using AlalaDiConnector.Mockups;
 using AlalaDiConnector.Models;
+
 using AlalaJournalEntries.Controllers;
 using AlalaJournalEntries.Interfaces;
+using AlalaJournalEntries.Mockups;
 using AlalaJournalEntries.Models;
 
 namespace AlalaJournalEntriesApi.Controllers
@@ -15,7 +19,7 @@ namespace AlalaJournalEntriesApi.Controllers
     [Route("api/JournalEntries")]
     public class JournalEntriesController : ApiController
     {
-        private DiConnectionController _connector;
+        private IDiConnection _connector;
         private IJournalEntries _journalEntries;
 
         public JournalEntriesController()
@@ -31,20 +35,16 @@ namespace AlalaJournalEntriesApi.Controllers
                     "AlalaJournalEntries.conf"));
 
             var connection = JsonConvert.DeserializeObject<DiConnectionModel>(connectionPath);
-            _connector = new DiConnectionController(connection);
+            _connector = new DiConnectionMockup(connection); // TODO: Turn this to the actual controller for integration testing.
+            
+            _connector.Connect();
 
-            // TODO: Uncomment the following line when
-            // SAP testbed is ready to test
-            //_connector.Connect();
-
-            _journalEntries = new JournalEntries(_connector);
+            _journalEntries = new JournalEntriesMockup(_connector);
         }
 
         ~JournalEntriesController()
         {
-            // TODO: Uncomment the following line when
-            // SAP testbed is ready to test
-            //_connector.Disconnect();
+            _connector.Disconnect();
         }
 
         [HttpGet, Route("GetById", Name = "GetById")]
