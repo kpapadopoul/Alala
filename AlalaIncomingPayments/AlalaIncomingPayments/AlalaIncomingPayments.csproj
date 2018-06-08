@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controllers\IncomingPayments.cs" />
     <Compile Include="Interfaces\IIncomingPayments.cs" />
+    <Compile Include="Mockups\IncomingPaymentsMockup.cs" />
     <Compile Include="Models\IncomingPaymentInvoiceModel.cs" />
     <Compile Include="Models\IncomingPaymentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
