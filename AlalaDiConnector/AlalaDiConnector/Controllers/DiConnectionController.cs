@@ -15,10 +15,13 @@ namespace AlalaDiConnector.Controllers
     {
         public Company Company { get; set; } // Property respesents the SAP DI company object
 
+        /// <summary>
+        /// Default constructor of the DI connection controller.
+        /// </summary>
         public DiConnectionController() { }
 
         /// <summary>
-        /// Default constructor of the DI connection controller;
+        /// Constructor of the DI connection controller;
         /// initializes the company object based on a given
         /// DI connection model.
         /// </summary>
@@ -30,6 +33,7 @@ namespace AlalaDiConnector.Controllers
                 throw new ArgumentException("The password file does not exist.");
             }
 
+            // Unprotect the SAP DI user password given its encrypted binary file path.
             var passProtector = new PasswordProtector();
             var password = passProtector.Unprotect(passwordPath);
 

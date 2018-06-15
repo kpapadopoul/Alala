@@ -22,6 +22,11 @@ namespace AlalaIncomingPayments.Controllers
             _utility = new IncomingPaymentUtility();
         }
 
+        /// <summary>
+        /// Gets the details of an incoming payment.
+        /// </summary>
+        /// <param name="docEntry">The entry of the incoming payment to be returned.</param>
+        /// <returns>A model that represents the incoming payment info.</returns>
         public IncomingPaymentModel GetById(int incomingPaymentEntry)
         {
             // Prepare the object
@@ -46,6 +51,11 @@ namespace AlalaIncomingPayments.Controllers
             return payment;
         }
 
+        /// <summary>
+        /// Creates an incoming payment to the database.
+        /// </summary>
+        /// <param name="invoice">A model that contains the incoming payment info
+        /// to be created.</param>
         public void Create(IncomingPaymentModel incomingPayment)
         {
             // Prepare the object

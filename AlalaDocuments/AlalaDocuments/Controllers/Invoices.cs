@@ -15,11 +15,22 @@ namespace AlalaDocuments.Controllers
     {
         private readonly Company _company;
 
+        /// <summary>
+        /// Default constructor of invoices controller
+        /// initializing company DI object.
+        /// </summary>
+        /// <param name="connection">An interface represents the DI connection
+        /// to be used for initializing the DI company object.</param>
         public Invoices(IDiConnection connection)
         {
             _company = connection.Company;
         }
 
+        /// <summary>
+        /// Gets the details of an invoice.
+        /// </summary>
+        /// <param name="docEntry">The entry of the invoice to be returned.</param>
+        /// <returns>A model that represents the invoice info.</returns>
         public InvoiceModel GetById(int docEntry)
         {
             // Prepare the object
@@ -39,6 +50,11 @@ namespace AlalaDocuments.Controllers
             return invoice;
         }
 
+        /// <summary>
+        /// Creates an invoice to the database.
+        /// </summary>
+        /// <param name="invoice">A model that contains the invoice info
+        /// to be created.</param>
         public void Create(InvoiceModel invoice)
         {
             // Prepare the object
@@ -76,6 +92,13 @@ namespace AlalaDocuments.Controllers
             Marshal.ReleaseComObject(invoiceObj);
         }
 
+        /// <summary>
+        /// Creates an invoice based on a given previously created order.
+        /// </summary>
+        /// <param name="orderId">The ID of the order based on which the 
+        /// invoice will be created.</param>
+        /// <param name="invoice">A model that contains any additional invoice info
+        /// to be created.</param>
         public void CreateBasedOnOrder(int orderId, InvoiceModel invoice)
         {
             // Prepare the object
@@ -117,6 +140,13 @@ namespace AlalaDocuments.Controllers
             Marshal.ReleaseComObject(invoiceObj);
         }
 
+        /// <summary>
+        /// Updates items of a given invoice.
+        /// </summary>
+        /// <param name="docEntry">The entry of the invoice to be updated.</param>
+        /// <param name="invoice">A model that contains the invoice items to be updated.</param>
+        /// <returns>A boolean value that is set to true whether the invoice
+        /// found in the database.</returns>
         public bool UpdateItems(int docEntry, InvoiceModel invoice)
         {
             // Prepare the object
@@ -155,6 +185,12 @@ namespace AlalaDocuments.Controllers
             return invoiceFound;
         }
 
+        /// <summary>
+        /// Deletes an invoice from the database.
+        /// </summary>
+        /// <param name="docEntry">The entry of the invoice to be deleted.</param>
+        /// <returns>A boolean value that is set to true whether the invoice
+        /// found in the database.</returns>
         public bool Delete(int docEntry)
         {
             // Prepare the object

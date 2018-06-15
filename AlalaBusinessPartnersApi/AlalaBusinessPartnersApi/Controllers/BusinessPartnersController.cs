@@ -22,6 +22,11 @@ namespace AlalaBusinessPartnersApi.Controllers
         private IDiConnection _connector;
         private IBusinessPartners _bpController;
         
+        /// <summary>
+        /// The default constructor of the business partner controller
+        /// getting the DI connection configuration, initializing interfaces
+        /// and connecting to ERP.
+        /// </summary>
         public BusinessPartnersController()
         {
             // Get connection details from configuration file.
@@ -46,11 +51,23 @@ namespace AlalaBusinessPartnersApi.Controllers
             _bpController = new BusinessPartnersMockup(_connector); // TODO: Turn this to actual controller for integration testing.
         }
 
+        /// <summary>
+        /// The default destructor of the business partner controller
+        /// disconnecting from the ERP.
+        /// </summary>
         ~BusinessPartnersController()
         {
             _connector.Disconnect();
         }
 
+        /// <summary>
+        /// An HTTP interface that retrieves a business partner details
+        /// given their ID.
+        /// </summary>
+        /// <param name="id">The ID of the business partner the details of
+        /// whom are to be retrieved.</param>
+        /// <returns>An HTTP action result represents the HTTP response including 
+        /// the business partner details.</returns>
         [HttpGet, Route("GetById", Name = "GetById")]
         public IHttpActionResult GetById(string id)
         {
@@ -64,6 +81,14 @@ namespace AlalaBusinessPartnersApi.Controllers
             return Ok(businessPartner);
         }
 
+        /// <summary>
+        /// An HTTP request that creates a new business partner to the
+        /// database.
+        /// </summary>
+        /// <param name="businessPartner">A model that represents the business partner
+        /// is to be created.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpPost, Route("Create")]
         public IHttpActionResult Create([FromBody]BusinessPartnerModel businessPartner)
         {
@@ -77,16 +102,25 @@ namespace AlalaBusinessPartnersApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// An HTTP request that updates contact employees of a given business partner.
+        /// </summary>
+        /// <param name="id">The ID of the business partner the contact employees
+        /// of whom is to be updated.</param>
+        /// <param name="businessPartner">The business partner model that is to be used as 
+        /// input for the contact employees to be updated.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpPut, Route("UpdateContactEmployees")]
-        public IHttpActionResult UpdateContactEmployees(string code, [FromBody]BusinessPartnerModel businessPartner)
+        public IHttpActionResult UpdateContactEmployees(string id, [FromBody]BusinessPartnerModel businessPartner)
         {
             if (businessPartner == null ||
-                businessPartner.Code != code)
+                businessPartner.Code != id)
             {
                 return BadRequest();
             }
 
-            var bpFound = _bpController.UpdateContactEmployees(code, businessPartner);
+            var bpFound = _bpController.UpdateContactEmployees(id, businessPartner);
             if (!bpFound)
             {
                 return NotFound();
@@ -95,10 +129,16 @@ namespace AlalaBusinessPartnersApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// An HTTP request that deletes a business partner from the database.
+        /// </summary>
+        /// <param name="id">The ID of the business partner is to be deleted.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpDelete, Route("Delete")]
-        public IHttpActionResult Delete(string code)
+        public IHttpActionResult Delete(string id)
         {
-            var bpFound = _bpController.Delete(code);
+            var bpFound = _bpController.Delete(id);
             if (!bpFound)
             {
                 return NotFound();
