@@ -21,7 +21,7 @@ namespace AlalaIncomingPayments.Interfaces
         /// <summary>
         /// Deletes an incoming payment from the database.
         /// </summary>
-        /// <param name="docEntry">The entry of the incoming payment to be deleted.</param>
+        /// <param name="incomingPaymentEntry">The entry of the incoming payment to be deleted.</param>
         /// <returns>A boolean value that is set to true whether the incoming payment
         /// found in the database.</returns>
         bool Delete(int incomingPaymentEntry);
