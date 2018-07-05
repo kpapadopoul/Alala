@@ -22,6 +22,11 @@ namespace AlalaIncomingPaymentsApi.Controllers
         private IDiConnection _connector;
         private IIncomingPayments _payments;
 
+        /// <summary>
+        /// The default constructor of the incoming payments controller
+        /// getting the DI connection configuration, initializing interfaces
+        /// and connecting to ERP.
+        /// </summary>
         public IncomingPaymentsController()
         {
             // Get connection details from configuration file.
@@ -46,11 +51,23 @@ namespace AlalaIncomingPaymentsApi.Controllers
             _payments = new IncomingPaymentsMockup(_connector); // TODO: Turn this to the actual controller for integration testing.
         }
 
+        /// <summary>
+        /// The default destructor of the business partner controller
+        /// disconnecting from the ERP.
+        /// </summary>
         ~IncomingPaymentsController()
         {
             _connector.Disconnect();
         }
 
+        /// <summary>
+        /// An HTTP interface that retrieves an incoming payment details
+        /// given their ID.
+        /// </summary>
+        /// <param name="paymentEntry">The ID of the business partner the details of
+        /// whom are to be retrieved.</param>
+        /// <returns>An HTTP action result represents the HTTP response including 
+        /// the business partner details.</returns>
         [HttpGet, Route("GetById", Name = "GetById")]
         public IHttpActionResult GetById(int paymentEntry)
         {
@@ -64,6 +81,14 @@ namespace AlalaIncomingPaymentsApi.Controllers
             return Ok(payment);
         }
 
+        /// <summary>
+        /// An HTTP request that creates a new business partner to the
+        /// database.
+        /// </summary>
+        /// <param name="payment">A model that represents the payment
+        /// is to be created.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpPost, Route("Create")]
         public IHttpActionResult Create([FromBody]IncomingPaymentModel payment)
         {
@@ -77,6 +102,13 @@ namespace AlalaIncomingPaymentsApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// An HTTP request that deletes an incoming payment from the database.
+        /// </summary>
+        /// <param name="paymentEntry"></param>
+        /// <returns>The ID of the incoming  is to be deleted.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpDelete, Route("Delete")]
         public IHttpActionResult Delete(int paymentEntry)
         {

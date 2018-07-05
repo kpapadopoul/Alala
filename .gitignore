@@ -35,10 +35,10 @@
 /AlalaOutgoingPaymentsApi/AlalaOutgoingPaymentsApi/bin/*
 /AlalaOutgoingPaymentsApi/AlalaOutgoingPaymentsApi/obj/*
 /AlalaOutgoingPaymentsApi/.vs/*
-/AlalaWebAPI/AlalaWebAPI/bin/*
-/AlalaWebAPI/AlalaWebAPI/obj/*
-/AlalaWebAPI/.vs/*
-/AlalaWebAPI.NoMVC/AlalaWebAPI/bin/*
-/AlalaWebAPI.NoMVC/AlalaWebAPI/obj/*
-/AlalaWebAPI.NoMVC/.vs/*
+/AlalaSecurePasswordApp/AlalaSecurePasswordApp/bin/*
+/AlalaSecurePasswordApp/AlalaSecurePasswordApp/obj/*
+/AlalaSecurePasswordApp/.vs/*
+/AlalaSecurePasswordLib/AlalaSecurePasswordLib/bin/*
+/AlalaSecurePasswordLib/AlalaSecurePasswordLib/obj/*
+/AlalaSecurePasswordLib/.vs/*
 /.vs/*
