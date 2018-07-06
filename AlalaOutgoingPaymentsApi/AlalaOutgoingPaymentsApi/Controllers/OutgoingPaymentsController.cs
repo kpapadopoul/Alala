@@ -22,6 +22,11 @@ namespace AlalaOutgoingPaymentsApi.Controllers
         private IDiConnection _connector;
         private IOutgoingPayments _payments;
 
+        /// <summary>
+        /// The default constructor of the outgoing payments controller
+        /// getting the DI connection configuration, initializing interfaces
+        /// and connecting to ERP.
+        /// </summary>
         public OutgoingPaymentsController()
         {
             // Get connection details from configuration file.
@@ -46,11 +51,24 @@ namespace AlalaOutgoingPaymentsApi.Controllers
             _payments = new OutgoingPaymentsMockup(_connector); // TODO: Turn this to the actual controller for integration testing.
         }
 
+        /// <summary>
+        /// The default constructor of the outgoing payments controller
+        /// getting the DI connection configuration, initializing interfaces
+        /// and connecting to ERP.
+        /// </summary>
         ~OutgoingPaymentsController()
         {
             _connector.Disconnect();
         }
 
+        /// <summary>
+        /// An HTTP interface that retrieves an outgoing payment details
+        /// given their ID.
+        /// </summary>
+        /// <param name="paymentEntry">The ID of the outgoing payment the details of
+        /// which are to be retrieved.</param>
+        /// <returns>An HTTP action result represents the HTTP response including 
+        /// the outgoing payment details.</returns>
         [HttpGet, Route("GetById", Name = "GetById")]
         public IHttpActionResult GetById(int paymentEntry)
         {
@@ -64,6 +82,14 @@ namespace AlalaOutgoingPaymentsApi.Controllers
             return Ok(payment);
         }
 
+        /// <summary>
+        /// An HTTP request that creates a new outgoing payment to the
+        /// database.
+        /// </summary>
+        /// <param name="payment">A model that represents the payment
+        /// is to be created.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpPost, Route("Create")]
         public IHttpActionResult Create([FromBody]OutgoingPaymentModel payment)
         {
@@ -77,6 +103,12 @@ namespace AlalaOutgoingPaymentsApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        ///  HTTP request that deletes an outgoing payment from the database.
+        /// </summary>
+        /// <param name="paymentEntry">The ID of the outgoing payment is to be deleted.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpDelete, Route("Delete")]
         public IHttpActionResult Delete(int paymentEntry)
         {

@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 
 using SAPbobsCOM;
 
-using AlalaDiConnector.Controllers;
 using AlalaDiConnector.Interfaces;
 
 using AlalaIncomingPayments.Models;
@@ -16,12 +15,23 @@ namespace AlalaIncomingPayments.Controllers
         private readonly Company _company;
         private readonly IncomingPaymentUtility _utility;
 
+        /// <summary>
+        /// Default constructor of incoming payments controller
+        /// initializing company DI object.
+        /// </summary>
+        /// <param name="connection">An interface represents the DI connection
+        /// to be used for initializing the DI company object.</param>
         public IncomingPayments(IDiConnection connection)
         {
             _company = connection.Company;
             _utility = new IncomingPaymentUtility();
         }
 
+        /// <summary>
+        /// Gets the details of an incoming payment.
+        /// </summary>
+        /// <param name="incomingPaymentEntry">The entry of the incoming payment to be returned.</param>
+        /// <returns>A model that represents the incoming payment info.</returns>
         public IncomingPaymentModel GetById(int incomingPaymentEntry)
         {
             // Prepare the object
@@ -46,6 +56,11 @@ namespace AlalaIncomingPayments.Controllers
             return payment;
         }
 
+        /// <summary>
+        /// Creates an incoming payment to the database.
+        /// </summary>
+        /// <param name="incomingPayment">A model that contains the incoming payment info
+        /// to be created.</param>
         public void Create(IncomingPaymentModel incomingPayment)
         {
             // Prepare the object
@@ -80,6 +95,12 @@ namespace AlalaIncomingPayments.Controllers
             Marshal.ReleaseComObject(paymentObj);
         }
 
+        /// <summary>
+        /// Deletes an incoming payment from the database.
+        /// </summary>
+        /// <param name="incomingPaymentEntry">The entry of the incoming payment to be deleted.</param>
+        /// <returns>A boolean value that is set to true whether the incoming payment
+        /// found in the database.</returns>
         public bool Delete(int incomingPaymentEntry)
         {
             // Prepare the object

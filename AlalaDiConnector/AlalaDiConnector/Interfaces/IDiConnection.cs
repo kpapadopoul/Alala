@@ -6,7 +6,14 @@ namespace AlalaDiConnector.Interfaces
     {
         Company Company { get; set; }
 
+        /// <summary>
+        /// Connect to SAP DI.
+        /// </summary>
         void Connect();
+
+        /// <summary>
+        /// Disconnect from SAP DI.
+        /// </summary>
         void Disconnect();
     }
 }

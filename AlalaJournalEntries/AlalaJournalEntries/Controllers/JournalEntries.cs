@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 
 using SAPbobsCOM;
 
-using AlalaDiConnector.Controllers;
 using AlalaDiConnector.Interfaces;
 
 using AlalaJournalEntries.Models;
@@ -15,11 +14,22 @@ namespace AlalaJournalEntries.Controllers
     {
         private readonly Company _company;
 
+        /// <summary>
+        /// Default constructor of journal entries controller
+        /// initializing company DI object.
+        /// </summary>
+        /// <param name="connection">An interface represents the DI connection
+        /// to be used for initializing the DI company object.</param>
         public JournalEntries(IDiConnection connection)
         {
             _company = connection.Company;
         }
 
+        /// <summary>
+        /// Gets the details of a journal entry.
+        /// </summary>
+        /// <param name="jdtNum">The number of the journal entry to be returned.</param>
+        /// <returns>A model that represents the journal entry info.</returns>
         public JournalEntryModel GetById(int jdtNum)
         {
             // Prepare the object
@@ -57,6 +67,11 @@ namespace AlalaJournalEntries.Controllers
             return journalEntry;
         }
 
+        /// <summary>
+        /// Creates a journal entry to the database.
+        /// </summary>
+        /// <param name="journalEntry">A model that contains the journal entry info
+        /// to be created.</param>
         public void Create(JournalEntryModel journalEntry)
         {
             // Prepare the object
@@ -96,6 +111,12 @@ namespace AlalaJournalEntries.Controllers
             Marshal.ReleaseComObject(journalEntryObj);
         }
 
+        /// <summary>
+        /// Deletes a journal entry from the database.
+        /// </summary>
+        /// <param name="jdtNum">The number of the journal entry to be deleted.</param>
+        /// <returns>A boolean value that is set to true whether the journal entry
+        /// found in the database.</returns>
         public bool Delete(int jdtNum)
         {
             // Prepare the object

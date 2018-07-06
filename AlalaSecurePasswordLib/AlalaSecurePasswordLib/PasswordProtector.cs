@@ -9,6 +9,11 @@ namespace AlalaSecurePasswordLib
     {
         byte[] _additionalEntropy = { 9, 8, 7, 6, 5 };
 
+        /// <summary>
+        /// Protects a given string and write the derived encrypted
+        /// cipher to a binary file.
+        /// </summary>
+        /// <param name="input">The given string is to be encrypted.</param>
         public void Protect(string input)
         {
             //Encrypt the data.
@@ -18,6 +23,12 @@ namespace AlalaSecurePasswordLib
             WriteBytesToFile(encryptedData);
         }
 
+        /// <summary>
+        /// Unprotects the data of an encrypted binary file 
+        /// given its path.
+        /// </summary>
+        /// <param name="input">The path of the binary file to be decrypted.</param>
+        /// <returns>The string respects to the decrypted binary file data.</returns>
         public string Unprotect(string input)
         {
             var encryptedData = ReadBytesFromFile(input);
@@ -28,13 +39,18 @@ namespace AlalaSecurePasswordLib
             return Encoding.Unicode.GetString(originalData);
         }
 
+        /// <summary>
+        /// Protects a given byte array using DataProtectionScope.LocalMachine
+        /// </summary>
+        /// <param name="data">The input byte array to be encrypted.</param>
+        /// <returns>A byte array that corresponds to the encrypted data.</returns>
         private byte[] ProtectData(byte[] data)
         {
             try
             {
-                // Encrypt the data using DataProtectionScope.CurrentUser. The result can be decrypted
-                //  only by the same current user.
-                return ProtectedData.Protect(data, _additionalEntropy, DataProtectionScope.CurrentUser);
+                // Encrypt the data using DataProtectionScope.LocalMachine. The result can be decrypted
+                // only at the same local machine.
+                return ProtectedData.Protect(data, _additionalEntropy, DataProtectionScope.LocalMachine);
             }
             catch (CryptographicException e)
             {
@@ -44,12 +60,17 @@ namespace AlalaSecurePasswordLib
             }
         }
 
+        /// <summary>
+        /// Unprotects a given byte array using DataProtectionScope.LocalMachine.
+        /// </summary>
+        /// <param name="data">The input byte array to be decrypted.</param>
+        /// <returns>A byte array that corresponds to the decrypted data.</returns>
         private byte[] UnprotectData(byte[] data)
         {
             try
             {
-                //Decrypt the data using DataProtectionScope.CurrentUser.
-                return ProtectedData.Unprotect(data, _additionalEntropy, DataProtectionScope.CurrentUser);
+                // Decrypt the data using DataProtectionScope.LocalMachine.
+                return ProtectedData.Unprotect(data, _additionalEntropy, DataProtectionScope.LocalMachine);
             }
             catch (CryptographicException e)
             {
@@ -59,7 +80,10 @@ namespace AlalaSecurePasswordLib
             }
         }
 
-        // Write an array of bytes to a file
+        /// <summary>
+        /// Writes an array of bytes to a file
+        /// </summary>
+        /// <param name="bytes">The input byte array to be written to the file.</param>
         private void WriteBytesToFile(byte[] bytes)
         {
             string path = "Secret.dat";
@@ -76,7 +100,11 @@ namespace AlalaSecurePasswordLib
             }
         }
 
-        // Reads an array of bytes from a file
+        /// <summary>
+        /// Reads an array of bytes from a file.
+        /// </summary>
+        /// <param name="inputFile">The path of the file to be read.</param>
+        /// <returns>A byte array consists of the file data read.</returns>
         private byte[] ReadBytesFromFile(string inputFile)
         {
             string path = inputFile;
