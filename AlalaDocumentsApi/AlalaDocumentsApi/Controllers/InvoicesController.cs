@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Http;
 
@@ -71,14 +72,21 @@ namespace AlalaDocumentsApi.Controllers
         [HttpGet, Route("GetInvoiceById", Name = "GetInvoiceById")]
         public IHttpActionResult GetById(int docEntry)
         {
-            var invoice = _invoices.GetById(docEntry);
-
-            if (invoice == null)
+            try
             {
-                return NotFound();
-            }
+                var invoice = _invoices.GetById(docEntry);
 
-            return Ok(invoice);
+                if (invoice == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(invoice);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -97,9 +105,15 @@ namespace AlalaDocumentsApi.Controllers
                 return BadRequest();
             }
 
-            _invoices.Create(invoice);
-
-            return Ok();
+            try
+            {
+                _invoices.Create(invoice);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -120,9 +134,15 @@ namespace AlalaDocumentsApi.Controllers
                 return BadRequest();
             }
 
-            _invoices.CreateBasedOnOrder(orderId, invoice);
-
-            return Ok();
+            try
+            {
+                _invoices.CreateBasedOnOrder(orderId, invoice);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -142,13 +162,20 @@ namespace AlalaDocumentsApi.Controllers
                 return BadRequest();
             }
 
-            var invFound = _invoices.UpdateItems(docEntry, invoice);
-            if (!invFound)
+            try
             {
-                return NotFound();
-            }
+                var invFound = _invoices.UpdateItems(docEntry, invoice);
+                if (!invFound)
+                {
+                    return NotFound();
+                }
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -160,13 +187,20 @@ namespace AlalaDocumentsApi.Controllers
         [HttpDelete, Route("DeleteInvoice")]
         public IHttpActionResult Delete(int docEntry)
         {
-            var invFound = _invoices.Delete(docEntry);
-            if (!invFound)
+            try
             {
-                return NotFound();
-            }
+                var invFound = _invoices.Delete(docEntry);
+                if (!invFound)
+                {
+                    return NotFound();
+                }
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Http;
 
@@ -71,14 +72,21 @@ namespace AlalaDocumentsApi.Controllers
         [HttpGet, Route("GetOrderById", Name = "GetOrderById")]
         public IHttpActionResult GetById(int docEntry)
         {
-            var order = _orders.GetById(docEntry);
-
-            if (order == null)
+            try
             {
-                return NotFound();
-            }
+                var order = _orders.GetById(docEntry);
 
-            return Ok(order);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -97,9 +105,15 @@ namespace AlalaDocumentsApi.Controllers
                 return BadRequest();
             }
 
-            _orders.Create(order);
-
-            return Ok();
+            try
+            {
+                _orders.Create(order);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -119,13 +133,20 @@ namespace AlalaDocumentsApi.Controllers
                 return BadRequest();
             }
 
-            var orderFound = _orders.UpdateItems(docEntry, order);
-            if (!orderFound)
+            try
             {
-                return NotFound();
-            }
+                var orderFound = _orders.UpdateItems(docEntry, order);
+                if (!orderFound)
+                {
+                    return NotFound();
+                }
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -137,13 +158,20 @@ namespace AlalaDocumentsApi.Controllers
         [HttpDelete, Route("DeleteOrder")]
         public IHttpActionResult Delete(int docEntry)
         {
-            var orderFound = _orders.Delete(docEntry);
-            if (!orderFound)
+            try
             {
-                return NotFound();
-            }
+                var orderFound = _orders.Delete(docEntry);
+                if (!orderFound)
+                {
+                    return NotFound();
+                }
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
