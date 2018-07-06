@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Http;
 
@@ -71,14 +72,21 @@ namespace AlalaBusinessPartnersApi.Controllers
         [HttpGet, Route("GetById", Name = "GetById")]
         public IHttpActionResult GetById(string id)
         {
-            var businessPartner = _bpController.GetById(id);
-
-            if (businessPartner == null)
+            try
             {
-                return NotFound();
-            }
+                var businessPartner = _bpController.GetById(id);
 
-            return Ok(businessPartner);
+                if (businessPartner == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(businessPartner);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -97,9 +105,15 @@ namespace AlalaBusinessPartnersApi.Controllers
                 return BadRequest();
             }
 
-            _bpController.Create(businessPartner);
-
-            return Ok();
+            try
+            {
+                _bpController.Create(businessPartner);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -120,13 +134,20 @@ namespace AlalaBusinessPartnersApi.Controllers
                 return BadRequest();
             }
 
-            var bpFound = _bpController.UpdateContactEmployees(id, businessPartner);
-            if (!bpFound)
+            try
             {
-                return NotFound();
-            }
+                var bpFound = _bpController.UpdateContactEmployees(id, businessPartner);
+                if (!bpFound)
+                {
+                    return NotFound();
+                }
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -138,13 +159,20 @@ namespace AlalaBusinessPartnersApi.Controllers
         [HttpDelete, Route("Delete")]
         public IHttpActionResult Delete(string id)
         {
-            var bpFound = _bpController.Delete(id);
-            if (!bpFound)
+            try
             {
-                return NotFound();
-            }
+                var bpFound = _bpController.Delete(id);
+                if (!bpFound)
+                {
+                    return NotFound();
+                }
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
