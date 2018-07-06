@@ -22,6 +22,11 @@ namespace AlalaJournalEntriesApi.Controllers
         private IDiConnection _connector;
         private IJournalEntries _journalEntries;
 
+        /// <summary>
+        /// The default constructor of the journal entries controller
+        /// getting the DI connection configuration, initializing interfaces
+        /// and connecting to ERP.
+        /// </summary>
         public JournalEntriesController()
         {
             // Get connection details from configuration file.
@@ -46,11 +51,23 @@ namespace AlalaJournalEntriesApi.Controllers
             _journalEntries = new JournalEntriesMockup(_connector); // TODO: Turn this to the actual controller for integration testing.
         }
 
+        /// <summary>
+        /// The default destructor of the journal entries controller
+        /// disconnecting from the ERP.
+        /// </summary>
         ~JournalEntriesController()
         {
             _connector.Disconnect();
         }
 
+        /// <summary>
+        /// An HTTP interface that retrieves a journal entry details
+        /// given their ID.
+        /// </summary>
+        /// <param name="jdtNum">The ID of the journal entry the details of
+        /// which are to be retrieved.</param>
+        /// <returns>An HTTP action result represents the HTTP response including 
+        /// the journal entry details.</returns>
         [HttpGet, Route("GetById", Name = "GetById")]
         public IHttpActionResult GetById(int jdtNum)
         {
@@ -64,6 +81,14 @@ namespace AlalaJournalEntriesApi.Controllers
             return Ok(journalEntry);
         }
 
+        /// <summary>
+        /// An HTTP request that creates a new journal entry to the
+        /// database.
+        /// </summary>
+        /// <param name="journalEntry">A model that represents the journal entry
+        /// is to be created.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpPost, Route("Create")]
         public IHttpActionResult Create([FromBody]JournalEntryModel journalEntry)
         {
@@ -77,6 +102,12 @@ namespace AlalaJournalEntriesApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// An HTTP request that deletes a journal entry from the database.
+        /// </summary>
+        /// <param name="jdtNum">The ID of the journal entry is to be deleted.</param>
+        /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
+        /// of the actual event).</returns>
         [HttpDelete, Route("Delete")]
         public IHttpActionResult Delete(int jdtNum)
         {

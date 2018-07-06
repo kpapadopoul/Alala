@@ -52,7 +52,7 @@ namespace AlalaIncomingPaymentsApi.Controllers
         }
 
         /// <summary>
-        /// The default destructor of the business partner controller
+        /// The default destructor of the incoming payments controller
         /// disconnecting from the ERP.
         /// </summary>
         ~IncomingPaymentsController()
@@ -64,10 +64,10 @@ namespace AlalaIncomingPaymentsApi.Controllers
         /// An HTTP interface that retrieves an incoming payment details
         /// given their ID.
         /// </summary>
-        /// <param name="paymentEntry">The ID of the business partner the details of
-        /// whom are to be retrieved.</param>
+        /// <param name="paymentEntry">The ID of the incoming payment the details of
+        /// which are to be retrieved.</param>
         /// <returns>An HTTP action result represents the HTTP response including 
-        /// the business partner details.</returns>
+        /// the incoming payment details.</returns>
         [HttpGet, Route("GetById", Name = "GetById")]
         public IHttpActionResult GetById(int paymentEntry)
         {
@@ -82,7 +82,7 @@ namespace AlalaIncomingPaymentsApi.Controllers
         }
 
         /// <summary>
-        /// An HTTP request that creates a new business partner to the
+        /// An HTTP request that creates a new incoming payment to the
         /// database.
         /// </summary>
         /// <param name="payment">A model that represents the payment
@@ -105,8 +105,7 @@ namespace AlalaIncomingPaymentsApi.Controllers
         /// <summary>
         /// An HTTP request that deletes an incoming payment from the database.
         /// </summary>
-        /// <param name="paymentEntry"></param>
-        /// <returns>The ID of the incoming  is to be deleted.</param>
+        /// <param name="paymentEntry">The ID of the incoming payment is to be deleted.</param>        
         /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
         /// of the actual event).</returns>
         [HttpDelete, Route("Delete")]
