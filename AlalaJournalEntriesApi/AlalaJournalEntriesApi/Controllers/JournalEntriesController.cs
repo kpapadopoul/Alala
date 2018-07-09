@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Http;
 
@@ -71,14 +72,21 @@ namespace AlalaJournalEntriesApi.Controllers
         [HttpGet, Route("GetById", Name = "GetById")]
         public IHttpActionResult GetById(int jdtNum)
         {
-            var journalEntry = _journalEntries.GetById(jdtNum);
-
-            if (journalEntry == null)
+            try
             {
-                return NotFound();
-            }
+                var journalEntry = _journalEntries.GetById(jdtNum);
 
-            return Ok(journalEntry);
+                if (journalEntry == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(journalEntry);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -97,9 +105,15 @@ namespace AlalaJournalEntriesApi.Controllers
                 return BadRequest();
             }
 
-            _journalEntries.Create(journalEntry);
-
-            return Ok();
+            try
+            {
+                _journalEntries.Create(journalEntry);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -111,13 +125,20 @@ namespace AlalaJournalEntriesApi.Controllers
         [HttpDelete, Route("Delete")]
         public IHttpActionResult Delete(int jdtNum)
         {
-            var jeFound = _journalEntries.Delete(jdtNum);
-            if (!jeFound)
+            try
             {
-                return NotFound();
-            }
+                var jeFound = _journalEntries.Delete(jdtNum);
+                if (!jeFound)
+                {
+                    return NotFound();
+                }
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
