@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Http;
 
@@ -71,14 +72,21 @@ namespace AlalaIncomingPaymentsApi.Controllers
         [HttpGet, Route("GetById", Name = "GetById")]
         public IHttpActionResult GetById(int paymentEntry)
         {
-            var payment = _payments.GetById(paymentEntry);
-
-            if (payment == null)
+            try
             {
-                return NotFound();
-            }
+                var payment = _payments.GetById(paymentEntry);
 
-            return Ok(payment);
+                if (payment == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(payment);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -97,9 +105,15 @@ namespace AlalaIncomingPaymentsApi.Controllers
                 return BadRequest();
             }
 
-            _payments.Create(payment);
-
-            return Ok();
+            try
+            {
+                _payments.Create(payment);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -111,13 +125,20 @@ namespace AlalaIncomingPaymentsApi.Controllers
         [HttpDelete, Route("Delete")]
         public IHttpActionResult Delete(int paymentEntry)
         {
-            var paymentFound = _payments.Delete(paymentEntry);
-            if (!paymentFound)
+            try
             {
-                return NotFound();
-            }
+                var paymentFound = _payments.Delete(paymentEntry);
+                if (!paymentFound)
+                {
+                    return NotFound();
+                }
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
