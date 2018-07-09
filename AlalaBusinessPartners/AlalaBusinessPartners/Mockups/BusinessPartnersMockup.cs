@@ -37,7 +37,7 @@ namespace AlalaBusinessPartners.Mockups
         /// employee details.</param>
         /// <returns>A boolean value that is set to true whether the business partner
         /// found in the ERP.</returns>
-        public bool UpdateContactEmployees(string businessPartnerCode, BusinessPartnerModel businessPartner) { return false; }
+        public bool UpdateContactEmployees(string businessPartnerCode, BusinessPartnerModel businessPartner) { return true; }
 
         /// <summary>
         /// Deletes a business partner from the ERP.
@@ -46,6 +46,6 @@ namespace AlalaBusinessPartners.Mockups
         /// is to be deleted.</param>
         /// <returns>A boolean value that is set to true whether the business partner
         /// found in the ERP.</returns>
-        public bool Delete(string businessPartnerCode) { return false; }
+        public bool Delete(string businessPartnerCode) { return true; }
     }
 }

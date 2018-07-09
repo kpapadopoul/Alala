@@ -17,7 +17,7 @@ using AlalaBusinessPartners.Models;
 
 namespace AlalaBusinessPartnersApi.Controllers
 {
-    [Route("api/BusinessPartners")]
+    [RoutePrefix("api/BusinessPartners")]
     public class BusinessPartnersController : ApiController
     {
         private IDiConnection _connector;

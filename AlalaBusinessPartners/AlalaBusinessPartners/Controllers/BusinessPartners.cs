@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 
 using SAPbobsCOM;
 
-using AlalaDiConnector.Controllers;
 using AlalaDiConnector.Interfaces;
 using AlalaBusinessPartners.Models;
 using AlalaBusinessPartners.Utilities;
@@ -75,7 +74,7 @@ namespace AlalaBusinessPartners.Controllers
                 int code;
                 string msg;
                 _company.GetLastError(out code, out msg);
-                throw new Exception($"Something went wrong\n{code} {msg}");
+                throw new Exception($"{code} {msg}");
             }
 
             Marshal.ReleaseComObject(bp);
@@ -119,7 +118,7 @@ namespace AlalaBusinessPartners.Controllers
                     int code;
                     string msg;
                     _company.GetLastError(out code, out msg);
-                    throw new Exception($"Something went wrong\n{code} {msg}");
+                    throw new Exception($"{code} {msg}");
                 }
             }
 
@@ -153,7 +152,7 @@ namespace AlalaBusinessPartners.Controllers
                     int code;
                     string msg;
                     _company.GetLastError(out code, out msg);
-                    throw new Exception($"Something went wrong\n{code} {msg}");
+                    throw new Exception($"{code} {msg}");
                 }
             }
 
@@ -195,7 +194,7 @@ namespace AlalaBusinessPartners.Controllers
                     int code;
                     string msg;
                     _company.GetLastError(out code, out msg);
-                    throw new Exception($"Something went wrong\n{code} {msg}");
+                    throw new Exception($"{code} {msg}");
                 }
 
                 Marshal.ReleaseComObject(bp);
