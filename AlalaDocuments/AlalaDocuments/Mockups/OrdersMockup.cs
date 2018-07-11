@@ -33,7 +33,7 @@ namespace AlalaDocuments.Mockups
         /// <param name="invoice">A model that contains the order items to be updated.</param>
         /// <returns>A boolean value that is set to true whether the order
         /// found in the database.</returns>
-        public bool UpdateItems(int docEntry, OrderModel order) { return false; }
+        public bool UpdateItems(int docEntry, OrderModel order) { return true; }
 
         /// <summary>
         /// Deletes an order from the database.
@@ -41,6 +41,6 @@ namespace AlalaDocuments.Mockups
         /// <param name="docEntry">The entry of the order to be deleted.</param>
         /// <returns>A boolean value that is set to true whether the order
         /// found in the database.</returns>
-        public bool Delete(int docEntry) { return false; }
+        public bool Delete(int docEntry) { return true; }
     }
 }

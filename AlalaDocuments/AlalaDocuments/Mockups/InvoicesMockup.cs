@@ -42,7 +42,7 @@ namespace AlalaDocuments.Mockups
         /// <param name="invoice">A model that contains the invoice items to be updated.</param>
         /// <returns>A boolean value that is set to true whether the invoice
         /// found in the database.</returns>
-        public bool UpdateItems(int docEntry, InvoiceModel invoice) { return false; }
+        public bool UpdateItems(int docEntry, InvoiceModel invoice) { return true; }
 
         /// <summary>
         /// Deletes an invoice from the database.
@@ -50,6 +50,6 @@ namespace AlalaDocuments.Mockups
         /// <param name="docEntry">The entry of the invoice to be deleted.</param>
         /// <returns>A boolean value that is set to true whether the invoice
         /// found in the database.</returns>
-        public bool Delete(int docEntry) { return false; }
+        public bool Delete(int docEntry) { return true; }
     }
 }

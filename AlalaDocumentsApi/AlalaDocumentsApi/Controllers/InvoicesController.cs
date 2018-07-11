@@ -17,7 +17,7 @@ using AlalaDocuments.Models;
 
 namespace AlalaDocumentsApi.Controllers
 {
-    [Route("api/Invoices")]
+    [RoutePrefix("api/Invoices")]
     public class InvoicesController : ApiController
     {
         private IDiConnection _connector;
@@ -65,16 +65,16 @@ namespace AlalaDocumentsApi.Controllers
         /// An HTTP interface that retrieves an invoice details
         /// given its ID.
         /// </summary>
-        /// <param name="docEntry">The ID of the invoice the details of
+        /// <param name="id">The ID of the invoice the details of
         /// which are to be retrieved.</param>
         /// <returns>An HTTP action result represents the HTTP response including 
         /// the invoice details.</returns>
         [HttpGet, Route("GetInvoiceById", Name = "GetInvoiceById")]
-        public IHttpActionResult GetById(int docEntry)
+        public IHttpActionResult GetById(int id)
         {
             try
             {
-                var invoice = _invoices.GetById(docEntry);
+                var invoice = _invoices.GetById(id);
 
                 if (invoice == null)
                 {
@@ -148,23 +148,23 @@ namespace AlalaDocumentsApi.Controllers
         /// <summary>
         /// An HTTP request that updates items of a given invoice.
         /// </summary>
-        /// <param name="docEntry">The ID of the invoice to be updated.</param>
+        /// <param name="id">The ID of the invoice to be updated.</param>
         /// <param name="invoice">The invoice model that is to be used as 
         /// input for the items to be updated.</param>
         /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
         /// of the actual event).</returns>
         [HttpPut, Route("UpdateInvoiceItems")]
-        public IHttpActionResult UpdateItems(int docEntry, [FromBody]InvoiceModel invoice)
+        public IHttpActionResult UpdateItems(int id, [FromBody]InvoiceModel invoice)
         {
             if (invoice == null ||
-                invoice.DocEntry != docEntry)
+                invoice.DocEntry != id)
             {
                 return BadRequest();
             }
 
             try
             {
-                var invFound = _invoices.UpdateItems(docEntry, invoice);
+                var invFound = _invoices.UpdateItems(id, invoice);
                 if (!invFound)
                 {
                     return NotFound();
@@ -181,15 +181,15 @@ namespace AlalaDocumentsApi.Controllers
         /// <summary>
         /// An HTTP request that deletes an invoice from the database.
         /// </summary>
-        /// <param name="docEntry">The ID of the invoice is to be deleted.</param>
+        /// <param name="id">The ID of the invoice is to be deleted.</param>
         /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
         /// of the actual event).</returns>
         [HttpDelete, Route("DeleteInvoice")]
-        public IHttpActionResult Delete(int docEntry)
+        public IHttpActionResult Delete(int id)
         {
             try
             {
-                var invFound = _invoices.Delete(docEntry);
+                var invFound = _invoices.Delete(id);
                 if (!invFound)
                 {
                     return NotFound();
