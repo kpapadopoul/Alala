@@ -17,7 +17,7 @@ using AlalaJournalEntries.Models;
 
 namespace AlalaJournalEntriesApi.Controllers
 {
-    [Route("api/JournalEntries")]
+    [RoutePrefix("api/JournalEntries")]
     public class JournalEntriesController : ApiController
     {
         private IDiConnection _connector;
@@ -65,16 +65,16 @@ namespace AlalaJournalEntriesApi.Controllers
         /// An HTTP interface that retrieves a journal entry details
         /// given their ID.
         /// </summary>
-        /// <param name="jdtNum">The ID of the journal entry the details of
+        /// <param name="id">The ID of the journal entry the details of
         /// which are to be retrieved.</param>
         /// <returns>An HTTP action result represents the HTTP response including 
         /// the journal entry details.</returns>
         [HttpGet, Route("GetById", Name = "GetById")]
-        public IHttpActionResult GetById(int jdtNum)
+        public IHttpActionResult GetById(int id)
         {
             try
             {
-                var journalEntry = _journalEntries.GetById(jdtNum);
+                var journalEntry = _journalEntries.GetById(id);
 
                 if (journalEntry == null)
                 {
@@ -119,15 +119,15 @@ namespace AlalaJournalEntriesApi.Controllers
         /// <summary>
         /// An HTTP request that deletes a journal entry from the database.
         /// </summary>
-        /// <param name="jdtNum">The ID of the journal entry is to be deleted.</param>
+        /// <param name="id">The ID of the journal entry is to be deleted.</param>
         /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
         /// of the actual event).</returns>
         [HttpDelete, Route("Delete")]
-        public IHttpActionResult Delete(int jdtNum)
+        public IHttpActionResult Delete(int id)
         {
             try
             {
-                var jeFound = _journalEntries.Delete(jdtNum);
+                var jeFound = _journalEntries.Delete(id);
                 if (!jeFound)
                 {
                     return NotFound();

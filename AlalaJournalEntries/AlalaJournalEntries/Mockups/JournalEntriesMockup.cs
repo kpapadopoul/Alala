@@ -32,6 +32,6 @@ namespace AlalaJournalEntries.Mockups
         /// <param name="jdtNum">The number of the journal entry to be deleted.</param>
         /// <returns>A boolean value that is set to true whether the journal entry
         /// found in the database.</returns>
-        public bool Delete(int jdtNum) { return false; }
+        public bool Delete(int jdtNum) { return true; }
     }
 }
