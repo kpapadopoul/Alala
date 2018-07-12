@@ -17,7 +17,7 @@ using AlalaOutgoingPayments.Models;
 
 namespace AlalaOutgoingPaymentsApi.Controllers
 {
-    [Route("api/OutgoingPayments")]
+    [RoutePrefix("api/OutgoingPayments")]
     public class OutgoingPaymentsController : ApiController
     {
         private IDiConnection _connector;
@@ -66,16 +66,16 @@ namespace AlalaOutgoingPaymentsApi.Controllers
         /// An HTTP interface that retrieves an outgoing payment details
         /// given their ID.
         /// </summary>
-        /// <param name="paymentEntry">The ID of the outgoing payment the details of
+        /// <param name="id">The ID of the outgoing payment the details of
         /// which are to be retrieved.</param>
         /// <returns>An HTTP action result represents the HTTP response including 
         /// the outgoing payment details.</returns>
         [HttpGet, Route("GetById", Name = "GetById")]
-        public IHttpActionResult GetById(int paymentEntry)
+        public IHttpActionResult GetById(int id)
         {
             try
             {
-                var payment = _payments.GetById(paymentEntry);
+                var payment = _payments.GetById(id);
 
                 if (payment == null)
                 {
@@ -120,15 +120,15 @@ namespace AlalaOutgoingPaymentsApi.Controllers
         /// <summary>
         ///  HTTP request that deletes an outgoing payment from the database.
         /// </summary>
-        /// <param name="paymentEntry">The ID of the outgoing payment is to be deleted.</param>
+        /// <param name="id">The ID of the outgoing payment is to be deleted.</param>
         /// <returns>An HTTP action result represents the HTTP response (i.e., success or failure
         /// of the actual event).</returns>
         [HttpDelete, Route("Delete")]
-        public IHttpActionResult Delete(int paymentEntry)
+        public IHttpActionResult Delete(int id)
         {
             try
             {
-                var paymentFound = _payments.Delete(paymentEntry);
+                var paymentFound = _payments.Delete(id);
                 if (!paymentFound)
                 {
                     return NotFound();

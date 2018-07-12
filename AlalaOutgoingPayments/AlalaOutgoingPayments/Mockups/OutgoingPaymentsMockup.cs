@@ -32,6 +32,6 @@ namespace AlalaOutgoingPayments.Mockups
         /// <param name="outgoingPaymentEntry">The entry of the outgoing payment to be deleted.</param>
         /// <returns>A boolean value that is set to true whether the outgoing payment
         /// found in the database.</returns>
-        public bool Delete(int outgoingPaymentEntry) { return false; }
+        public bool Delete(int outgoingPaymentEntry) { return true; }
     }
 }
